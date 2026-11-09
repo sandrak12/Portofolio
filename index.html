@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandrak — Frontend Engineer &amp; UI Designer</title>
+    <meta name="description" content="Portofolio resmi Sandrak — Frontend Developer & UI/UX Designer yang membangun produk web modern, responsif, dan presisi.">
+    <!-- Clean, Normal, Professional Portfolio Typography: Inter & Plus Jakarta Sans + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ================= AMBIENT SHOOTING STARS & STARFIELD CANVAS ================= -->
+    <canvas id="starfieldCanvas" class="starfield-canvas" aria-hidden="true"></canvas>
+
+    <!-- ================= LOGO-ONLY LOADING SCREEN ================= -->
+    <div class="preloader" id="preloader" aria-label="Loading Screen">
+        <div class="preloader-logo-box">
+            <div class="logo-loader-ring">
+                <svg class="logo-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="6" width="68" height="68" rx="18" class="logo-stroke-rect" />
+                    <path d="M50 28C50 23.5817 45.5228 20 40 20C34.4772 20 30 23.5817 30 28C30 32.4183 34.4772 35 40 36.5C45.5228 38 50 40.5817 50 45.5C50 50.4183 45.5228 54 40 54C34.4772 54 30 50.4183 30 45.5" class="logo-stroke-s" />
+                    <circle cx="56" cy="54" r="3.5" class="logo-dot-fill" />
+                </svg>
+            </div>
+            <div class="preloader-brand-name">SANDRAK<span>.</span></div>
+        </div>
+    </div>
+
+    <!-- ================= PROFESSIONAL STAGGERED PAGE SLIDE TRANSITION ================= -->
+    <div class="page-transition-overlay" id="pageTransitionLayer" aria-hidden="true">
+        <div class="slide-column" style="--col-idx: 0"></div>
+        <div class="slide-column" style="--col-idx: 1"></div>
+        <div class="slide-column" style="--col-idx: 2"></div>
+        <div class="slide-column" style="--col-idx: 3"></div>
+        <div class="transition-center-badge">
+            <span class="transition-dot"></span>
+            <span class="transition-label" id="transitionLabel">Overview</span>
+        </div>
+    </div>
+
+    <!-- ================= TOP NAVBAR ================= -->
+    <header class="site-header" id="header">
+        <div class="container header-inner">
+            <a href="#home" class="brand-logo" data-target="home" aria-label="Sandrak Home">
+                <span class="brand-mark">S</span>
+                <span class="brand-name">Sandrak<span class="accent-dot">.</span></span>
+            </a>
+
+            <!-- Desktop Sliding Pill Hotbar -->
+            <nav class="nav-hotbar" id="desktopHotbar" aria-label="Primary Navigation">
+                <span class="nav-glider" id="navGlider" aria-hidden="true"></span>
+                <a href="#home" class="nav-item active" data-target="home">Home</a>
+                <a href="#about" class="nav-item" data-target="about">About</a>
+                <a href="#services" class="nav-item" data-target="services">Services</a>
+                <a href="#skills" class="nav-item" data-target="skills">Skills</a>
+                <a href="#portfolio" class="nav-item" data-target="portfolio">Works</a>
+                <a href="#contact" class="nav-item" data-target="contact">Contact</a>
+            </nav>
+
+            <div class="header-controls">
+                <!-- Dark / Light Mode Toggle -->
+                <button class="mode-toggle-btn" id="themeModeBtn" aria-label="Toggle Dark or Light Mode">
+                    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <span class="mode-label" id="modeText">Dark</span>
+                </button>
+
+                <a href="#contact" class="btn-hire" data-target="contact">
+                    <span>Hire Me</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <button class="mobile-trigger" id="mobileMenuTrigger" aria-label="Buka Menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 7h16M4 12h16M10 17h10" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= CONTEXTUAL SIDE HOTBAR (APPEARS ON SCROLL) ================= -->
+    <aside class="side-hotbar" id="sideHotbar" aria-label="Side Section Hotbar">
+        <div class="side-hotbar-inner">
+            <span class="side-glider" id="sideGlider" aria-hidden="true"></span>
+            <a href="#home" class="side-item active" data-target="home" aria-label="Home">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="side-tooltip">Home</span>
+            </a>
+            <a href="#about" class="side-item" data-target="about" aria-label="About">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M5 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke-linecap="round"/>
+                </svg>
+                <span class="side-tooltip">About</span>
+            </a>
+            <a href="#services" class="side-item" data-target="services" aria-label="Services">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                </svg>
+                <span class="side-tooltip">Services</span>
+            </a>
+            <a href="#skills" class="side-item" data-target="skills" aria-label="Skills">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                </svg>
+                <span class="side-tooltip">Skills</span>
+            </a>
+            <a href="#portfolio" class="side-item" data-target="portfolio" aria-label="Works">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2"/>
+                    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                </svg>
+                <span class="side-tooltip">Works</span>
+            </a>
+            <a href="#contact" class="side-item" data-target="contact" aria-label="Contact">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="side-tooltip">Contact</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <div class="mobile-backdrop" id="mobileBackdrop"></div>
+    <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+        <div class="mobile-drawer-head">
+            <a href="#home" class="brand-logo" data-target="home">
+                <span class="brand-mark">S</span>
+                <span class="brand-name">Sandrak<span class="accent-dot">.</span></span>
+            </a>
+            <button class="icon-btn" id="drawerClose" aria-label="Tutup Menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="mobile-drawer-nav">
+            <a href="#home" class="mobile-link active" data-target="home"><span class="idx">01</span> Home</a>
+            <a href="#about" class="mobile-link" data-target="about"><span class="idx">02</span> About</a>
+            <a href="#services" class="mobile-link" data-target="services"><span class="idx">03</span> Services</a>
+            <a href="#skills" class="mobile-link" data-target="skills"><span class="idx">04</span> Skills</a>
+            <a href="#portfolio" class="mobile-link" data-target="portfolio"><span class="idx">05</span> Works</a>
+            <a href="#contact" class="mobile-link" data-target="contact"><span class="idx">06</span> Contact</a>
+        </nav>
+
+        <div class="mobile-drawer-foot">
+            <a href="#contact" class="btn-primary w-full" data-target="contact">Mulai Diskusi Proyek</a>
+            <div class="drawer-socials">
+                <a href="https://github.com/sandrak12" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/sandrak-nababan/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/sundark221/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main id="mainContent">
+        <!-- ================= 01. HERO SECTION ================= -->
+        <section class="page-section hero-section is-active-section" id="home" data-section-title="Home Overview">
+            <div class="hero-ambient" aria-hidden="true"></div>
+
+            <div class="container hero-grid">
+                <div class="hero-copy reveal-item">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span>Available for Freelance &amp; Full-time Roles</span>
+                    </div>
+
+                    <p class="hero-greeting">Hi, I'm Sandrak</p>
+                    <h1 class="hero-title">
+                        Building clean, fast &amp; thoughtful <span class="text-accent">web interfaces.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Seorang <span class="role-highlight" id="typedRole">Frontend Developer</span><span class="caret">|</span> yang berfokus pada pengembangan website modern dengan kode yang rapi, performa tinggi, dan pengalaman pengguna yang intuitif di semua perangkat.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn-primary" data-target="portfolio">
+                            <span>Lihat Karya Pilihan</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1rI4IfElS52mWwM_m79hiyXFZkZxYdblv/view" target="_blank" rel="noopener" class="btn-cv" id="downloadCvBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Download CV</span>
+                        </a>
+                        <a href="#contact" class="btn-secondary" data-target="contact">
+                            <span>Hubungi Saya</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials">
+                        <a href="https://github.com/sandrak12" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
+                        <a href="https://www.linkedin.com/in/sandrak-nababan/" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
+                        <a href="https://www.instagram.com/sundark221/" target="_blank" rel="noopener" class="social-link">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive 3D Photo Card of Sandrak (With Option to Upload Custom Photo) -->
+                <div class="hero-showcase reveal-item" style="--delay: 0.1s">
+                    <div class="photo-3d-stage" id="photo3dStage">
+                        <div class="photo-3d-card" id="photo3dCard">
+                            <!-- Glare & Rim Lighting Layer -->
+                            <div class="card-glare" id="cardGlare" aria-hidden="true"></div>
+                            <div class="orbit-ring" aria-hidden="true"></div>
+
+                            <!-- Floating 3D Badges (Parallax Depth Z) -->
+                            <div class="float-3d-chip chip-top-left">
+                                <span class="chip-dot"></span>
+                                <span>Frontend &amp; UI Engineer</span>
+                            </div>
+
+                            <div class="float-3d-chip chip-bottom-right">
+                                <strong>3+ Thn</strong>
+                                <span>Experience</span>
+                            </div>
+
+                            <!-- Main 3D Portrait Image Frame -->
+                            <div class="photo-frame-inner">
+                                <img src="assets/sandrak-photo.png" alt="Foto Profil 3D Sandrak Nababan" class="sandrak-portrait-img" id="sandrakPortraitImg">
+                                <div class="photo-vignette"></div>
+                            </div>
+
+                            <!-- Bottom Glass Caption Bar with Custom Photo Upload Trigger -->
+                            <div class="photo-card-bar">
+                                <div class="photo-id-text">
+                                    <strong>Sandrak Nababan</strong>
+                                    <span>Surabaya, Indonesia • Verified Portfolio</span>
+                                </div>
+                                <label for="customPhotoInput" class="upload-photo-btn" title="Ganti dengan file foto Anda sendiri">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                        <circle cx="12" cy="13" r="4"/>
+                                    </svg>
+                                    <span>Ganti Foto</span>
+                                </label>
+                                <input type="file" id="customPhotoInput" accept="image/*" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 02. ABOUT ME SECTION ================= -->
+        <section class="page-section about-section" id="about" data-section-title="About Sandrak">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <span class="section-tag">01 — About Me</span>
+                    <h2 class="section-title">Tentang <span>Sandrak</span></h2>
+                    <p class="section-desc">Kombinasi antara ketelitian rekayasa perangkat lunak dan kepekaan desain visual.</p>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Left Card: Profile Summary -->
+                    <div class="surface-card profile-summary-card reveal-item">
+                        <div class="profile-head">
+                            <img src="assets/sandrak-photo.png" alt="Sandrak" class="about-mini-photo" id="aboutMiniPhoto">
+                            <div>
+                                <h3>Sandrak Nababan</h3>
+                                <p class="role-sub">Frontend Developer &amp; UI/UX Designer</p>
+                            </div>
+                        </div>
+
+                        <p class="profile-bio">
+                            Saya berfokus pada pembuatan website yang tidak hanya terlihat bersih dan profesional, tetapi juga cepat diakses, mudah dinavigasi, dan nyaman digunakan di berbagai ukuran layar.
+                        </p>
+
+                        <div class="info-list">
+                            <div class="info-row">
+                                <span>Domisili</span>
+                                <strong>Surabaya, Indonesia (Remote Ready)</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Spesialisasi</span>
+                                <strong>Frontend Engineering &amp; UI Design</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Tools Utama</span>
+                                <strong>VS Code, Figma, Git, Chrome DevTools</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Status</span>
+                                <strong class="text-accent">Open to Opportunities</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Card: Engineering Philosophy -->
+                    <div class="surface-card philosophy-card reveal-item" style="--delay: 0.1s">
+                        <h3>Pendekatan Kerja &amp; Standar Kualitas</h3>
+                        <p>
+                            Banyak website terlihat ramai namun lambat dan membingungkan saat digunakan di perangkat mobile. Pendekatan saya bersama klien selalu dimulai dari kejelasan struktur informasi, tipografi yang nyaman dibaca, serta kode yang terorganisir.
+                        </p>
+
+                        <div class="feature-boxes">
+                            <div class="feature-box">
+                                <span class="f-num">01</span>
+                                <h4>Clean &amp; Semantic Code</h4>
+                                <p>Struktur HTML5 dan CSS3 modular yang mudah dipelihara, ramah mesin pencari (SEO), dan bebas dari library berlebih.</p>
+                            </div>
+                            <div class="feature-box">
+                                <span class="f-num">02</span>
+                                <h4>Figma to Production</h4>
+                                <p>Menerjemahkan desain antarmuka dari Figma menjadi halaman web fungsional dengan akurasi spasi, warna, dan interaksi.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="#portfolio" class="btn-primary" data-target="portfolio">Lihat Studi Kasus</a>
+                            <a href="#contact" class="link-arrow" data-target="contact">Diskusikan Kebutuhan Anda →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 03. SERVICES SECTION ================= -->
+        <section class="page-section services-section" id="services" data-section-title="Services">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <span class="section-tag">02 — Capabilities</span>
+                    <h2 class="section-title">Layanan <span>Utama</span></h2>
+                    <p class="section-desc">Solusi pengembangan web dan desain antarmuka untuk kebutuhan personal maupun bisnis.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="surface-card service-card reveal-item">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <path d="M8 21h8M12 17v4M7 8l-3 2.5L7 13M17 8l3 2.5L17 13" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Frontend Web Development</h3>
+                        <p>
+                            Pembuatan website profil perusahaan, landing page produk, dan aplikasi web interaktif dengan performa tinggi dan kode yang bersih.
+                        </p>
+                        <ul class="tag-list">
+                            <li>HTML5 &amp; CSS3</li>
+                            <li>JavaScript ES6+</li>
+                            <li>Fast Performance</li>
+                        </ul>
+                    </article>
+
+                    <article class="surface-card service-card reveal-item" style="--delay: 0.08s">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+                                <path d="M10 18h4M9 7h6" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Responsive Mobile-First UI</h3>
+                        <p>
+                            Memastikan tampilan dan navigasi website beradaptasi dengan mulus di semua ukuran layar—mulai dari smartphone, tablet, hingga monitor desktop.
+                        </p>
+                        <ul class="tag-list">
+                            <li>Responsive Grid</li>
+                            <li>Touch Friendly</li>
+                            <li>Cross-Browser</li>
+                        </ul>
+                    </article>
+
+                    <article class="surface-card service-card reveal-item" style="--delay: 0.16s">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                            </svg>
+                        </div>
+                        <h3>UI/UX &amp; Design System</h3>
+                        <p>
+                            Perancangan prototipe antarmuka di Figma, penyusunan komponen UI yang konsisten, serta redesign website agar tampil lebih modern dan kredibel.
+                        </p>
+                        <ul class="tag-list">
+                            <li>Figma Prototyping</li>
+                            <li>Design System</li>
+                            <li>UI Audit</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 04. SKILLS SECTION ================= -->
+        <section class="page-section skills-section" id="skills" data-section-title="Technical Skills">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <span class="section-tag">03 — Technical Stack</span>
+                    <h2 class="section-title">Keahlian &amp; <span>Teknologi</span></h2>
+                    <p class="section-desc">Perangkat dan teknologi yang saya gunakan sehari-hari untuk membangun produk digital.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="surface-card skill-item reveal-item">
+                        <div class="skill-top">
+                            <h4>HTML5 &amp; Semantic Markup</h4>
+                            <span class="skill-val">92%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="92%"></div>
+                        </div>
+                        <p>Struktur dokumen bersih, aksesibilitas WAI-ARIA, dan optimasi SEO teknis.</p>
+                    </div>
+
+                    <div class="surface-card skill-item reveal-item" style="--delay: 0.05s">
+                        <div class="skill-top">
+                            <h4>CSS3, Grid &amp; Modern Layouts</h4>
+                            <span class="skill-val">90%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="90%"></div>
+                        </div>
+                        <p>Responsive layout, Flexbox, CSS Grid, animasi transisi halus, dan Dark/Light theming.</p>
+                    </div>
+
+                    <div class="surface-card skill-item reveal-item" style="--delay: 0.1s">
+                        <div class="skill-top">
+                            <h4>JavaScript (ES6+ / DOM)</h4>
+                            <span class="skill-val">84%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="84%"></div>
+                        </div>
+                        <p>Logika antarmuka interaktif, pengelolaan state komponen, dan integrasi API.</p>
+                    </div>
+
+                    <div class="surface-card skill-item reveal-item" style="--delay: 0.15s">
+                        <div class="skill-top">
+                            <h4>Figma &amp; UI/UX Design</h4>
+                            <span class="skill-val">88%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="88%"></div>
+                        </div>
+                        <p>Auto-Layout, komponen sistem desain, wireframing, dan prototipe interaktif.</p>
+                    </div>
+
+                    <div class="surface-card skill-item reveal-item" style="--delay: 0.2s">
+                        <div class="skill-top">
+                            <h4>Tailwind CSS &amp; Bootstrap</h4>
+                            <span class="skill-val">85%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="85%"></div>
+                        </div>
+                        <p>Pengembangan antarmuka cepat dengan sistem utility-first yang konsisten.</p>
+                    </div>
+
+                    <div class="surface-card skill-item reveal-item" style="--delay: 0.25s">
+                        <div class="skill-top">
+                            <h4>Git &amp; Modern Web Workflow</h4>
+                            <span class="skill-val">80%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="80%"></div>
+                        </div>
+                        <p>Version control, kolaborasi repositori GitHub, dan deployment ke cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 05. PORTFOLIO / SELECTED WORKS (WITH INTERACTIVE SPOTLIGHT & ANIMATED MOCKUPS) ================= -->
+        <section class="page-section portfolio-section" id="portfolio" data-section-title="Selected Works">
+            <div class="container">
+                <div class="portfolio-top-bar reveal-item">
+                    <div>
+                        <span class="section-tag">04 — Selected Works</span>
+                        <h2 class="section-title">Karya <span>Pilihan</span></h2>
+                    </div>
+
+                    <div class="filter-group" role="tablist" aria-label="Filter Proyek">
+                        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Semua (6)</button>
+                        <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web App</button>
+                        <button class="filter-btn" data-filter="ui" role="tab" aria-selected="false">UI Design</button>
+                        <button class="filter-btn" data-filter="landing" role="tab" aria-selected="false">Landing Page</button>
+                    </div>
+                </div>
+
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Project 1 -->
+                    <article class="surface-card project-card reveal-item" data-category="web">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>partyrock.aws/JourneyMate</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-row">
+                                    <div class="m-stat">
+                                        <small>AI Companion</small>
+                                        <strong>JourneyMate</strong>
+                                    </div>
+                                    <div class="m-stat">
+                                        <small>Platform</small>
+                                        <strong class="text-accent">AWS PartyRock</strong>
+                                    </div>
+                                </div>
+                                <div class="m-bars">
+                                    <span style="--h:45%; --i:0"></span>
+                                    <span style="--h:68%; --i:1"></span>
+                                    <span style="--h:52%; --i:2"></span>
+                                    <span style="--h:88%; --i:3" class="active"></span>
+                                    <span style="--h:74%; --i:4"></span>
+                                    <span style="--h:95%; --i:5" class="active"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>AI Web Application</span>
+                                <span>2026</span>
+                            </div>
+                            <h3>JourneyMate — AI Travel Companion</h3>
+                            <p>Aplikasi asisten perjalanan pintar berbasis Generative AI di AWS PartyRock untuk menyusun itinerary, rekomendasi destinasi, dan panduan perjalanan secara instan.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>AWS PartyRock</span><span>Gen AI</span><span>Web App</span>
+                                </div>
+                                <a href="https://partyrock.aws/u/tim3cendekiawan/_5_A9rqH7/JourneyMate" target="_blank" rel="noopener" class="btn-detail">
+                                    <span>Buka Proyek</span>
+                                    <span class="arrow-icon">↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="surface-card project-card reveal-item" data-category="web" style="--delay: 0.06s">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>partyrock.aws/HireHelp</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-tokens">
+                                    <div class="m-btn-row">
+                                        <span class="m-btn-pri">AI Career Match</span>
+                                        <span class="m-btn-sec">Resume &amp; Interview</span>
+                                    </div>
+                                    <div class="m-swatches">
+                                        <div class="m-sw sw-dark">Analyze</div>
+                                        <div class="m-sw sw-surface">Prepare</div>
+                                        <div class="m-sw sw-accent">HireHelp</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>AI Web Application</span>
+                                <span>2026</span>
+                            </div>
+                            <h3>HireHelp — AI Career &amp; Hiring Assistant</h3>
+                            <p>Aplikasi berbasis Generative AI di AWS PartyRock yang membantu persiapan karier, evaluasi kualifikasi kandidat, serta simulasi wawancara kerja secara interaktif.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>AWS PartyRock</span><span>Gen AI</span><span>Career Tech</span>
+                                </div>
+                                <a href="https://partyrock.aws/u/tim3cendekiawan/YkmKFgMhW/HireHelp" target="_blank" rel="noopener" class="btn-detail">
+                                    <span>Buka Proyek</span>
+                                    <span class="arrow-icon">↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="surface-card project-card reveal-item" data-category="landing" style="--delay: 0.12s">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>klang-audio.com</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-hero-preview">
+                                    <span class="m-badge">STUDIO SERIES</span>
+                                    <strong>Precision Acoustic Engineering.</strong>
+                                    <div class="m-divider"></div>
+                                    <small class="m-explore-text">Explore Specifications →</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>Landing Page</span>
+                                <span>2025</span>
+                            </div>
+                            <h3>Klang — Flagship Audio Product Page</h3>
+                            <p>Landing page produk perangkat audio minimalis dengan fokus pada tipografi bersih, animasi scroll halus, dan konversi tinggi.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>Landing Page</span><span>Responsive</span><span>Motion</span>
+                                </div>
+                                <button class="btn-detail" data-title="Klang — Flagship Audio Product Page" data-cat="Landing Page • 2025" data-stack="HTML5, Modern CSS, IntersectionObserver Animations" data-desc="Halaman peluncuran produk untuk perangkat audio studio. Dirancang agar memberikan kesan eksklusif sekaligus ringan saat dibuka di smartphone.">
+                                    <span>Detail</span>
+                                    <span class="arrow-icon">↗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="surface-card project-card reveal-item" data-category="web">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>stride-store.id</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-commerce">
+                                    <div class="m-prod-top">
+                                        <span>Aero Runner Pro</span>
+                                        <strong class="text-accent">Rp 1.850K</strong>
+                                    </div>
+                                    <div class="m-sizes">
+                                        <span>40</span><span class="active">41</span><span>42</span><span>43</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>Web Application</span>
+                                <span>2025</span>
+                            </div>
+                            <h3>Stride — Modern E-Commerce Storefront</h3>
+                            <p>Antarmuka toko online dengan filter katalog instan, pratinjau varian ukuran interaktif, dan alur keranjang belanja yang ringkas.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>E-Commerce</span><span>JavaScript</span><span>UI/UX</span>
+                                </div>
+                                <button class="btn-detail" data-title="Stride — Modern E-Commerce Storefront" data-cat="Web Application • 2025" data-stack="Vanilla JavaScript State, Responsive Grid, Fast Checkout UI" data-desc="Menyederhanakan proses pencarian dan pembelian produk olahraga dengan filter tanpa reload dan tata letak mobile-first.">
+                                    <span>Detail</span>
+                                    <span class="arrow-icon">↗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
+                    <article class="surface-card project-card reveal-item" data-category="landing" style="--delay: 0.06s">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>veritas-legal.co.id</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-doc">
+                                    <span class="m-verified">✓ Verified Legal Portal</span>
+                                    <div class="m-lines">
+                                        <span class="line-anim-1"></span>
+                                        <span class="line-anim-2 short"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>Landing Page</span>
+                                <span>2025</span>
+                            </div>
+                            <h3>Veritas — Corporate &amp; Legal Advisory</h3>
+                            <p>Website profil korporat dan penjadwalan konsultasi profesional dengan tata letak terstruktur yang meningkatkan kepercayaan klien.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>Corporate UI</span><span>SEO</span><span>HTML/CSS</span>
+                                </div>
+                                <button class="btn-detail" data-title="Veritas — Corporate & Legal Advisory" data-cat="Corporate Website • 2025" data-stack="Semantic HTML5, Accessible Forms, Responsive Layout" data-desc="Membangun citra digital yang kredibel untuk firma konsultasi legal melalui tipografi yang tegas dan kemudahan pengajuan jadwal temu.">
+                                    <span>Detail</span>
+                                    <span class="arrow-icon">↗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 6 -->
+                    <article class="surface-card project-card reveal-item" data-category="ui" style="--delay: 0.12s">
+                        <div class="card-spotlight" aria-hidden="true"></div>
+                        <div class="project-mockup">
+                            <div class="mockup-bar">
+                                <span></span><span></span><span></span>
+                                <small>cloud-console.dev</small>
+                            </div>
+                            <div class="mockup-screen">
+                                <div class="m-terminal">
+                                    <code class="cmd-line">$ build --production</code>
+                                    <code class="ok">✓ Deployed in 1.2s</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span>UI Design</span>
+                                <span>2026</span>
+                            </div>
+                            <h3>Nexus — Cloud Deployment Interface</h3>
+                            <p>Desain antarmuka manajemen server dan deployment untuk developer dengan indikator status yang jelas dan mode gelap nyaman.</p>
+                            <div class="project-footer">
+                                <div class="tech-tags">
+                                    <span>Dashboard UI</span><span>Dark Mode</span><span>Figma</span>
+                                </div>
+                                <button class="btn-detail" data-title="Nexus — Cloud Deployment Interface" data-cat="UI Design • 2026" data-stack="Figma System, High-Contrast Dark Theme, Developer Experience" data-desc="Antarmuka konsol cloud yang meminimalkan beban kognitif developer saat memantau log deployment dan kesehatan server.">
+                                    <span>Detail</span>
+                                    <span class="arrow-icon">↗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 06. CONTACT SECTION ================= -->
+        <section class="page-section contact-section" id="contact" data-section-title="Contact">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <span class="section-tag">05 — Get In Touch</span>
+                    <h2 class="section-title">Hubungi <span>Sandrak</span></h2>
+                    <p class="section-desc">Punya rencana proyek website baru atau tawaran kolaborasi? Mari berdiskusi.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Direct Info -->
+                    <div class="surface-card contact-info-card reveal-item">
+                        <h3>Informasi Kontak</h3>
+                        <p>
+                            Silakan hubungi saya melalui email, WhatsApp, atau isi formulir di samping. Saya biasanya membalas pesan dalam waktu kurang dari 24 jam.
+                        </p>
+
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="c-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                        <path d="M22 6l-10 7L2 6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span>Email</span>
+                                    <a href="mailto:sandraknababan18@gmail.com">sandraknababan18@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="c-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span>Telepon / WhatsApp</span>
+                                    <a href="https://wa.me/6282134797500" target="_blank" rel="noopener">082134797500</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="c-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/>
+                                        <circle cx="12" cy="10" r="2.5"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span>Lokasi</span>
+                                    <strong>Indonesia, Surabaya — Tersedia untuk Remote</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="surface-card contact-form-card reveal-item" style="--delay: 0.1s">
+                        <form id="contactForm" novalidate>
+                            <div class="form-row-2">
+                                <div class="field-group">
+                                    <label for="fullName">Nama Lengkap</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Nama Anda" required>
+                                    <p class="error-text">Mohon isi nama lengkap Anda.</p>
+                                </div>
+                                <div class="field-group">
+                                    <label for="emailAddr">Alamat Email</label>
+                                    <input type="email" id="emailAddr" name="emailAddr" placeholder="nama@email.com" required>
+                                    <p class="error-text">Mohon masukkan email yang valid.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-row-2">
+                                <div class="field-group">
+                                    <label for="phoneNum">Nomor WhatsApp / Telepon</label>
+                                    <input type="tel" id="phoneNum" name="phoneNum" placeholder="+62 812..." required>
+                                    <p class="error-text">Mohon isi nomor telepon.</p>
+                                </div>
+                                <div class="field-group">
+                                    <label for="subjectTxt">Subjek</label>
+                                    <input type="text" id="subjectTxt" name="subjectTxt" placeholder="Pembuatan Website / Kolaborasi" required>
+                                    <p class="error-text">Mohon isi subjek pesan.</p>
+                                </div>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="textarea">Pesan Anda</label>
+                                <textarea id="textarea" name="message" placeholder="Ceritakan singkat mengenai proyek atau kebutuhan Anda..." required></textarea>
+                                <p class="error-text">Mohon tuliskan pesan Anda.</p>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full">
+                                <span>Kirim Pesan</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+
+                            <div class="form-feedback" id="formFeedback" role="status" aria-live="polite" hidden></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark">S</span>
+                <span>Sandrak Nababan</span>
+            </div>
+            <p class="footer-copy">
+                &copy; <span id="currentYear">2026</span> Sandrak. All rights reserved.
+            </p>
+            <button class="back-to-top" id="scrollTopBtn" aria-label="Kembali ke atas">
+                <span>Ke Atas ↑</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ================= PROJECT CASE STUDY MODAL ================= -->
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-dialog">
+            <div class="modal-head">
+                <span class="modal-cat" id="modalCat">CATEGORY</span>
+                <button class="icon-btn" id="modalClose" aria-label="Tutup">✕</button>
+            </div>
+            <div class="modal-body">
+                <h3 id="modalTitle">Project Title</h3>
+                <p id="modalDesc">Project description.</p>
+                <div class="modal-stack-box">
+                    <span>Teknologi yang Digunakan</span>
+                    <strong id="modalStack">HTML5, CSS3, JavaScript</strong>
+                </div>
+                <div class="modal-actions">
+                    <a href="#contact" class="btn-primary" id="modalInquireBtn" data-target="contact">Diskusikan Proyek Serupa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
